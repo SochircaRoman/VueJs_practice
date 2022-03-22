@@ -13,13 +13,16 @@ const App = {
             this.inputValue = event.target.value;
         },
         addNewNote() {
-            this.notes.push(this.inputValue);
-            this.inputValue = "";
-        },
-        inputKeyPress(event) {
-            if (event.key === "Enter") {
-                this.addNewNote();
+            if (this.inputValue !== "") {
+                this.notes.push(this.inputValue);
+                this.inputValue = "";
             }
+        },
+        toUpperCase(item) {
+            return item.toUpperCase();
+        },
+        removeNote(index) {
+            this.notes.splice(index, 1);
         }
     }
 }

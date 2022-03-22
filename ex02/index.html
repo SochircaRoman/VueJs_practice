@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs</title>
+</head>
+
+<body>
+
+    <div class="container" id="app">
+        <h1>{{title}}</h1>
+        <div>
+            <input type="text" v-bind:placeholder="placeholderText" v-bind:value="inputValue"
+                v-on:input="inputChangeHandler" v-on:keypress="inputKeyPress">
+        </div>
+        <button v-on:click="addNewNote">Add</button>
+        <hr>
+        <ul>
+            <li v-for="note in notes">{{note}}</li>
+        </ul>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

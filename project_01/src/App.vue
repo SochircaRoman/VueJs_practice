@@ -1,12 +1,18 @@
 <template>
   <div class="app">
     <h1>Page with posts</h1>
-    <my-button @click="showDialog">Create post</my-button>
+    <div>
+      <my-button class="app__btns" @click="showDialog">Create post</my-button>
+      <my-select
+        v-model="selectedSort"
+        :options="sortOptions"
+      />
+    </div>
     <my-dialog v-model:show="dialogVisible">
       <PostForm @create="addToList"/>
     </my-dialog>
     <PostList
-      :posts="posts"
+      :posts="sortedPosts"
       @remove="removePost"
       v-if="!isPostsLoading"
     />
@@ -30,6 +36,11 @@ export default {
       posts: [],
       dialogVisible: false,
       isPostsLoading: false,
+      selectedSort: "",
+      sortOptions: [
+        {value: "title", name: "for name"},
+        {value: "body", name: "for description"},
+      ]
     }
   },
   methods: {
@@ -59,10 +70,23 @@ export default {
   mounted() {
     this.fetchPosts();
   },
+  computed: {
+    sortedPosts() {
+      return [...this.posts].sort((post1, post2) => post1[this.selectedSort]?.localeCompare(post2[this.selectedSort]));
+    }
+  }
 }
 </script>
 
 
 <style>
+.app {
+  padding: 20px;
+}
+
+.app__btns {
+  display: flex;
+  justify-content: space-between;
+}
 
 </style>

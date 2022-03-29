@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent>
-    <h4>Create post</h4>
+    <div><strong>Create post</strong></div>
     <my-title-input
     v-model:value="post.title"
     type="text"

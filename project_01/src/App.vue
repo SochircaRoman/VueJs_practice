@@ -1,8 +1,10 @@
 <template>
   <div class="app">
-    <PostForm
-      @create="addToList"
-    />
+    <h1>Page with posts</h1>
+    <my-button @click="showDialog">Create post</my-button>
+    <my-dialog v-model:show="dialogVisible">
+      <PostForm @create="addToList"/>
+    </my-dialog>
     <PostList
       :posts="posts"
       @remove="removePost"
@@ -17,8 +19,9 @@ import PostForm from '@/components/PostForm.vue';
 
 export default {
   components: {
-    PostList, PostForm
-  },
+    PostList,
+    PostForm,
+},
   data() {
     return {
       posts: [
@@ -26,15 +29,20 @@ export default {
         {id: 2, title: "JavaScript 2", body: "JavaScript description"},
         {id: 3, title: "JavaScript 3", body: "JavaScript description"},
       ],
+      dialogVisible: false,
     }
   },
   methods: {
     addToList(post) {
       this.posts.push(post);
+      this.dialogVisible = false;
     },
     removePost(post){
       this.posts = this.posts.filter(p => p.id !== post.id);
     },
+    showDialog() {
+      this.dialogVisible = true;
+    }
   },
 }
 </script>

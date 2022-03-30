@@ -6,7 +6,7 @@
     export default {
         name: "my-description-input",
         props: {
-        value: [String, Number] 
+          value: [String, Number] 
       },
       methods: {
         updateInput(event) {
